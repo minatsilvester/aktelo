@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  board: one
+  organization: one
+  read: false
+  write: false
+  create: false
+  edit: false
+  delete: false
+
+two:
+  user: two
+  board: two
+  organization: two
+  read: false
+  write: false
+  create: false
+  edit: false
+  delete: false

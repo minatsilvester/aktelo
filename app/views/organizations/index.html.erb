@@ -1,0 +1,41 @@
+<div class="container top-margin">
+  <% if current_user.organizations == [] %>
+    <center>
+      <h3>You have no Organizations access, Create an organization to proceed</h3>
+      <%= link_to "Create an Organization now", new_organization_path, class: "btn btn-primary" %>
+    </center>
+  <% else %>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h3>All the organizations you are part of...</h3>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <center>
+          <%= link_to "+ New Organization", new_organization_path, class: "btn btn-outline-primary" %>
+        </center>
+      </div>
+    </div>
+    <div class="row">
+      <% current_user.organization_accesses.each do |organization_access| %>
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title"><%= organization_access.organization.name %></h5>
+          <% if organization_access.isadmin %>
+            <p class="card-text">Admin.</p>
+          <% end %>
+          <% if organization_access.ismanager %>
+            <p class="card-text">Manager</p>
+          <% end %>
+          <% if organization_access.ismember %>
+            <p class="card-text">Member</p>
+          <% end %>
+          <% if organization_access.isguest %>
+            <p class="card-text">Guest</p>
+          <% end %>
+          <p class="card-text"><%= link_to "Open Organization", organization_path(organization_access.organization) %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

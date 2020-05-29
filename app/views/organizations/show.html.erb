@@ -1,0 +1,46 @@
+<div class="container top-margin">
+  <h1>Welcome to organization <%= @organization.name %></h1>
+  <% if @organization_access_level %>
+    <% if @organization.boards == [] %>
+      <h1>This organization currently has no boards</h1>
+      <% if @organization_access_level.isadmin || @organization_access_level.ismanager %>
+        <%= link_to "Create a New board", new_organization_board_path(@organization), class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <% if @board_access_exists %>
+        <% current_user.boards_accesses.each do |board_access| %>
+          <div class="row">
+            <% if board_access.organization_id == @organization.id %>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= board_access.board.name %></h5>
+                    <% if board_access.read %>
+                      <p class="card-text">Read</p>
+                    <% end %>
+                    <% if board_access.write %>
+                      <p class="card-text">Write</p>
+                    <% end %>
+                    <% if board_access.create %>
+                      <p class="card-text">Create</p>
+                    <% end %>
+                    <% if board_access.edit %>
+                      <p class="card-text">Edit</p>
+                    <% end %>
+                    <% if board_access.remove %>
+                      <p class="card-text">Delete</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+          <h1>You are not associated with any boards in this organization</h1>
+      <% end %>
+    <% end %>
+  <% else %>
+      <h1>You are not part o this organization</h1>
+  <% end %>
+</div>

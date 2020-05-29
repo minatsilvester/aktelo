@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization_id: one
+  user_id: one
+  isadmin: false
+  ismanager: false
+  ismember: false
+  isguest: false
+
+two:
+  organization_id: two
+  user_id: two
+  isadmin: false
+  ismanager: false
+  ismember: false
+  isguest: false
